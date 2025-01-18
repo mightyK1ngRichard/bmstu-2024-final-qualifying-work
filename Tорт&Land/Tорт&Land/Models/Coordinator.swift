@@ -12,10 +12,10 @@ import SwiftUI
 @Observable
 final class Coordinator {
     var navPath = NavigationPath()
+    var activeTab: TabBarItem = .house
 }
 
 extension Coordinator {
-
     func addScreen<T: Hashable>(_ screen: T) {
         navPath.append(screen)
     }

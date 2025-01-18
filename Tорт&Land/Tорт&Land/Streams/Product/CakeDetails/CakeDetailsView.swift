@@ -12,7 +12,7 @@ struct CakeDetailsView: View {
     @Environment(Coordinator.self) private var coordinator
 
     var body: some View {
-        mainContainer.onAppear {
+        mainContainer.onFirstAppear {
             viewModel.setEnvironmentObjects(coordinator: coordinator)
         }
         .navigationDestination(for: CakeDetailsModel.Screens.self) { screen in
@@ -28,7 +28,7 @@ private extension CakeDetailsView {
     func openNextScreen(_ screen: CakeDetailsModel.Screens) -> some View {
         switch screen {
         case .ratingReviews:
-            viewModel.configureRatingReviewsView()
+            viewModel.assemblyRatingReviewsView()
         }
     }
 }

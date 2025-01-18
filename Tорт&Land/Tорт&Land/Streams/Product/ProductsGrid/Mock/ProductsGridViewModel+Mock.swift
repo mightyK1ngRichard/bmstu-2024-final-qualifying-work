@@ -16,7 +16,7 @@ final class ProductsGridViewModelMock: ProductsGridDisplayLogic & ProductsGridVi
     var uiProperties = ProductsGridModel.UIProperties()
     private(set) var cakes: [CakeModel]
     private(set) var sectionKind: ProductsGridModel.SectionKind
-    private let worker = ProductCardWorker()
+    @ObservationIgnored
     private var coordinator: Coordinator?
 
     init(
@@ -32,13 +32,13 @@ final class ProductsGridViewModelMock: ProductsGridDisplayLogic & ProductsGridVi
     }
 
     func didTapProductCard(cake: CakeModel) {
-        coordinator?.addScreen(CakesListModel.Screens.details(cake))
+        coordinator?.addScreen(RootModel.Screens.details(cake))
     }
 
     func didTapProductLikeButton(cake: CakeModel, isSelected: Bool) {}
 
     func configureProductCard(cake: CakeModel) -> TLProductCard.Configuration {
-        worker.configureProductCard(model: cake, section: sectionKind.listSection)
+        return cake.configureProductCard()
     }
 }
 

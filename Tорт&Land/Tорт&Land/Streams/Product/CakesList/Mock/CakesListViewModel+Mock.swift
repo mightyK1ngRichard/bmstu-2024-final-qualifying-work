@@ -17,8 +17,6 @@ final class CakesListViewModelMock: CakesListDisplayLogic, CakesListViewModelOut
     @ObservationIgnored
     private var delay: TimeInterval = 0
     @ObservationIgnored
-    private let productWorker = ProductCardWorker()
-    @ObservationIgnored
     private var coordinator: Coordinator?
 
     init(delay: TimeInterval) {
@@ -31,15 +29,9 @@ final class CakesListViewModelMock: CakesListDisplayLogic, CakesListViewModelOut
             try? await Task.sleep(for: .seconds(delay))
             await MainActor.run {
                 sections = [
-                    .sale(
-                        (1...20).map { CommonMockData.generateMockCakeModel(id: $0) }
-                    ),
-                    .new(
-                        (21...32).map { CommonMockData.generateMockCakeModel(id: $0, withDiscount: false) }
-                    ),
-                    .all(
-                        (33...40).map { CommonMockData.generateMockCakeModel(id: $0, withDiscount: false) }
-                    )
+                    .sale(MockData.saleCakes),
+                    .new(MockData.newCakes),
+                    .all(MockData.allCakes)
                 ]
                 screenState = .finished
             }
@@ -58,7 +50,7 @@ final class CakesListViewModelMock: CakesListDisplayLogic, CakesListViewModelOut
 
     func didTapCell(model: CakeModel) {
         print("[DEBUG]: Нажали на торт: \(model.id)")
-        coordinator?.addScreen(CakesListModel.Screens.details(model))
+        coordinator?.addScreen(RootModel.Screens.details(model))
     }
 
     func didTapLikeButton(model: CakeModel, isSelected: Bool) {
@@ -69,12 +61,6 @@ final class CakesListViewModelMock: CakesListDisplayLogic, CakesListViewModelOut
 // MARK: - Configuration
 
 extension CakesListViewModelMock {
-
-    func assemblyDetailsView(model: CakeModel) -> CakeDetailsView {
-        let viewModel = CakeDetailsViewModelMock(cakeModel: model)
-        return CakeDetailsView(viewModel: viewModel)
-    }
-
     func assemblyTagsView(cakes: [CakeModel], sectionKind: ProductsGridModel.SectionKind) -> ProductsGridView {
         let viewModel = ProductsGridViewModelMock(cakes: cakes, sectionKind: sectionKind)
         return ProductsGridView(viewModel: viewModel)
@@ -85,17 +71,36 @@ extension CakesListViewModelMock {
     }
 
     func configureProductCard(model: CakeModel, section: CakesListModel.Section) -> TLProductCard.Configuration {
-        productWorker.configureProductCard(model: model, section: section)
+        model.configureProductCard()
     }
 }
 
 // MARK: - Setter
 
 extension CakesListViewModelMock {
-
     func setEnvironmentObjects(coordinator: Coordinator) {
         self.coordinator = coordinator
     }
 }
 
+// MARK: - Constants
+
+private extension CakesListViewModelMock {
+    enum MockData {
+        static let saleCakes = (1...20).map {
+            var cakes = CommonMockData.generateMockCakeModel(id: $0)
+            cakes.similarCakes = newCakes
+            return cakes
+        }
+        static let newCakes = (21...32).map {
+            var cakes = CommonMockData.generateMockCakeModel(id: $0, withDiscount: false)
+            cakes.similarCakes = allCakes
+            return cakes
+        }
+        static let allCakes = (33...40).map {
+            var cakes = CommonMockData.generateMockCakeModel(id: $0, withDiscount: false)
+            return cakes
+        }
+    }
+}
 #endif
