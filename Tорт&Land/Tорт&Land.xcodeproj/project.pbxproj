@@ -6,6 +6,14 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		E50140042D57AA9D0014B721 /* SwiftProtobuf in Frameworks */ = {isa = PBXBuildFile; productRef = E50140032D57AA9D0014B721 /* SwiftProtobuf */; };
+		E50140062D57AA9D0014B721 /* SwiftProtobufPluginLibrary in Frameworks */ = {isa = PBXBuildFile; productRef = E50140052D57AA9D0014B721 /* SwiftProtobufPluginLibrary */; };
+		E50140082D57AAAC0014B721 /* protoc-gen-swift in Frameworks */ = {isa = PBXBuildFile; productRef = E50140072D57AAAC0014B721 /* protoc-gen-swift */; };
+		E501400B2D57AAC60014B721 /* GRPC in Frameworks */ = {isa = PBXBuildFile; productRef = E501400A2D57AAC60014B721 /* GRPC */; };
+		E501400D2D57AAC60014B721 /* protoc-gen-grpc-swift in Frameworks */ = {isa = PBXBuildFile; productRef = E501400C2D57AAC60014B721 /* protoc-gen-grpc-swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		E5A5F5B32D1647E600140551 /* Tорт&Land.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tорт&Land.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +31,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E501400B2D57AAC60014B721 /* GRPC in Frameworks */,
+				E50140062D57AA9D0014B721 /* SwiftProtobufPluginLibrary in Frameworks */,
+				E50140042D57AA9D0014B721 /* SwiftProtobuf in Frameworks */,
+				E50140082D57AAAC0014B721 /* protoc-gen-swift in Frameworks */,
+				E501400D2D57AAC60014B721 /* protoc-gen-grpc-swift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -33,6 +46,7 @@
 			isa = PBXGroup;
 			children = (
 				E5A5F5B52D1647E600140551 /* Tорт&Land */,
+				E5D707522D56623D00146D4C /* Frameworks */,
 				E5A5F5B42D1647E600140551 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +57,13 @@
 				E5A5F5B32D1647E600140551 /* Tорт&Land.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		E5D707522D56623D00146D4C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -65,6 +86,11 @@
 			);
 			name = "Tорт&Land";
 			packageProductDependencies = (
+				E50140032D57AA9D0014B721 /* SwiftProtobuf */,
+				E50140052D57AA9D0014B721 /* SwiftProtobufPluginLibrary */,
+				E50140072D57AAAC0014B721 /* protoc-gen-swift */,
+				E501400A2D57AAC60014B721 /* GRPC */,
+				E501400C2D57AAC60014B721 /* protoc-gen-grpc-swift */,
 			);
 			productName = "Tорт&Land";
 			productReference = E5A5F5B32D1647E600140551 /* Tорт&Land.app */;
@@ -95,6 +121,10 @@
 			);
 			mainGroup = E5A5F5AA2D1647E600140551;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				E50140022D57AA9D0014B721 /* XCRemoteSwiftPackageReference "swift-protobuf" */,
+				E50140092D57AAC60014B721 /* XCRemoteSwiftPackageReference "grpc-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E5A5F5B42D1647E600140551 /* Products */;
 			projectDirPath = "";
@@ -264,7 +294,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -298,7 +328,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -337,6 +367,53 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E50140022D57AA9D0014B721 /* XCRemoteSwiftPackageReference "swift-protobuf" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-protobuf/";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.28.2;
+			};
+		};
+		E50140092D57AAC60014B721 /* XCRemoteSwiftPackageReference "grpc-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/grpc/grpc-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.24.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E50140032D57AA9D0014B721 /* SwiftProtobuf */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E50140022D57AA9D0014B721 /* XCRemoteSwiftPackageReference "swift-protobuf" */;
+			productName = SwiftProtobuf;
+		};
+		E50140052D57AA9D0014B721 /* SwiftProtobufPluginLibrary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E50140022D57AA9D0014B721 /* XCRemoteSwiftPackageReference "swift-protobuf" */;
+			productName = SwiftProtobufPluginLibrary;
+		};
+		E50140072D57AAAC0014B721 /* protoc-gen-swift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E50140022D57AA9D0014B721 /* XCRemoteSwiftPackageReference "swift-protobuf" */;
+			productName = "protoc-gen-swift";
+		};
+		E501400A2D57AAC60014B721 /* GRPC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E50140092D57AAC60014B721 /* XCRemoteSwiftPackageReference "grpc-swift" */;
+			productName = GRPC;
+		};
+		E501400C2D57AAC60014B721 /* protoc-gen-grpc-swift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E50140092D57AAC60014B721 /* XCRemoteSwiftPackageReference "grpc-swift" */;
+			productName = "protoc-gen-grpc-swift";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E5A5F5AB2D1647E600140551 /* Project object */;
 }
